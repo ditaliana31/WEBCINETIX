@@ -8,7 +8,7 @@
 
             <a href="/" class="hover:text-white transition">Home</a>
 
-            <a href="/booking" class="hover:text-white transition">
+            <a href="/bioskop" class="hover:text-white transition">
                 Bioskop
             </a>
 

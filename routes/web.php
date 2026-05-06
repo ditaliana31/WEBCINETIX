@@ -3,18 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FilmController;
-<<<<<<< HEAD
 use App\Http\Controllers\BookingController;
-
-/*
-|--------------------------------------------------------------------------
-| PUBLIC
-|--------------------------------------------------------------------------
-*/
-=======
 use App\Http\Controllers\BioskopController;
 use App\Http\Controllers\HomeController;
->>>>>>> 1c81f3fedc06b7766df006a2e5438f3e821794c4
 
 /*
 |--------------------------------------------------------------------------
@@ -45,10 +36,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 |--------------------------------------------------------------------------
 */
 
-<<<<<<< HEAD
 Route::prefix('booking')->group(function () {
 
-    // 🔥 daftar film (INI YANG DIPAKAI NAVBAR)
+    // daftar film
     Route::get('/', [BookingController::class, 'index'])
         ->name('booking.index');
 
@@ -79,9 +69,6 @@ Route::prefix('booking')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     Route::get('/', function () {
-=======
-    Route::get('/admin', function () {
->>>>>>> 1c81f3fedc06b7766df006a2e5438f3e821794c4
         return view('admin.dashboard');
     });
 
@@ -97,13 +84,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-<<<<<<< HEAD
 Route::middleware(['auth', 'role:kasir'])->prefix('kasir')->group(function () {
 
     Route::get('/', function () {
-=======
-    Route::get('/kasir', function () {
->>>>>>> 1c81f3fedc06b7766df006a2e5438f3e821794c4
         return view('kasir.dashboard');
     });
 });
