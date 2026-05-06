@@ -89,4 +89,3 @@ Route::middleware(['auth', 'role:kasir'])->prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
-});
