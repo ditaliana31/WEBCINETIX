@@ -1,43 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineTix Booking</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@section('content')
 
 <body class="bg-[#14070d] text-white font-sans min-h-screen p-6">
 
     <div class="max-w-7xl mx-auto bg-[#1f1f1f] rounded-3xl p-6 shadow-2xl">
-        <!-- Navbar -->
-        <nav class="flex items-center justify-between mb-8">
-            <div class="flex items-center gap-10">
-                <div class="text-2xl font-bold text-red-500">CineTix</div>
-                <div class="flex gap-8 text-gray-300">
-                    <a href="#home" class="hover:text-white transition">Home</a>
-                    <a href="#bioskop" class="hover:text-white transition">Bioskop</a>
-                    <a href="#film" class="hover:text-white transition">Film</a>
-                    <div class="relative group cursor-pointer">
-                        <span class="hover:text-white transition">Genre</span>
-                        <div
-                            class="absolute hidden group-hover:block bg-[#2a2a2a] rounded-xl mt-2 py-2 w-40 shadow-lg z-50">
-                            <a href="#" class="block px-4 py-2 hover:bg-[#3a3a3a]">Action</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-[#3a3a3a]">Drama</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-[#3a3a3a]">Comedy</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-[#3a3a3a]">Horror</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-[#3a3a3a]">Sci-Fi</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-center gap-4">
-                <input type="text" placeholder="Search" class="bg-[#121212] rounded-xl px-4 py-2 outline-none">
-
-                <div class="w-10 h-10 rounded-full bg-yellow-400"></div>
-            </div>
-        </nav>
 
         <div class="grid grid-cols-12 gap-6">
             <!-- Main Content -->
@@ -52,9 +19,10 @@
                         <p class="text-gray-300 mb-6">
                             Perjalanan epik berlanjut. Rasakan pengalaman menonton terbaik hanya di bioskop kami.
                         </p>
-                        <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-xl font-semibold">
+                        <<a href="{{ route('booking.index') }}"
+                            class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-xl font-semibold inline-block transition transform hover:scale-105">
                             Pesan Sekarang
-                        </button>
+                            </a>
                     </div>
                 </section>
 
@@ -126,6 +94,5 @@
     </div>
     </div>
 
-</body>
 
-</html>
+    @endsection
