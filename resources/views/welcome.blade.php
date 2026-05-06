@@ -36,30 +36,39 @@
             <div class="flex items-center gap-4 relative">
                 <input type="text" placeholder="Search" class="bg-[#121212] rounded-xl px-4 py-2 outline-none">
 
-                <!-- Avatar tetap sama -->
-                <div class="w-10 h-10 rounded-full bg-yellow-400 cursor-pointer"></div>
+                @auth
+                    <!-- Tampilan Jika Sudah Login -->
+                    <div id="avatarBtn" class="w-10 h-10 rounded-full bg-yellow-400 cursor-pointer flex items-center justify-center text-black font-bold uppercase">
+                        {{ substr(Auth::user()->name, 0, 1) }}
+                    </div>
 
-                <!-- TAMBAHAN PROFILE MENU -->
-                <div id="profileMenu"
-                    class="hidden absolute right-0 top-14 bg-white text-black rounded-xl shadow-lg p-4 w-56 z-50">
+                    <div id="profileMenu"
+                        class="hidden absolute right-0 top-14 bg-white text-black rounded-xl shadow-lg p-4 w-56 z-50">
 
-                    <p class="font-bold">{{ Auth::user()->name }}</p>
-                    <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
+                        <p class="font-bold">{{ Auth::user()->name }}</p>
+                        <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
 
-                    <hr class="my-3">
+                        <hr class="my-3">
 
-                    <a href="/profile" class="block py-2 hover:text-red-500">
-                        Profil Saya
-                    </a>
+                        <a href="/profile" class="block py-2 hover:text-red-500">
+                            Profil Saya
+                        </a>
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit"
-                            class="w-full mt-2 bg-red-600 text-white py-2 rounded-lg">
-                            Logout
-                        </button>
-                    </form>
-                </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="w-full mt-2 bg-red-600 text-white py-2 rounded-lg">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                @else
+                    <!-- Tampilan Jika Belum Login -->
+                    <div class="flex gap-2">
+                        <a href="{{ route('login') }}" class="text-gray-300 hover:text-white px-4 py-2">Login</a>
+                        <a href="{{ route('register') }}" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-xl font-semibold">Register</a>
+                    </div>
+                @endauth
             </div>
         </nav>
 
@@ -151,14 +160,16 @@
         </div>
     </div>
 
-    <!-- TAMBAHAN SCRIPT -->
+    <!-- SCRIPT -->
     <script>
-        const avatar = document.querySelector('.bg-yellow-400');
+        const avatar = document.getElementById('avatarBtn');
         const menu = document.getElementById('profileMenu');
 
-        avatar.addEventListener('click', function () {
-            menu.classList.toggle('hidden');
-        });
+        if(avatar) {
+            avatar.addEventListener('click', function () {
+                menu.classList.toggle('hidden');
+            });
+        }
     </script>
 
 </body>
