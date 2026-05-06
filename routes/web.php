@@ -3,21 +3,35 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\BioskopController;
+use App\Http\Controllers\HomeController;
 
+/*
+|--------------------------------------------------------------------------
+| WEB ROUTES
+|--------------------------------------------------------------------------
+*/
+
+// 🔥 HALAMAN AWAL
 Route::get('/', function () {
     return view('welcome');
 });
 
+// 🔥 HALAMAN BIOSKOP (PUBLIC - TANPA LOGIN)
+Route::get('/bioskop', [BioskopController::class, 'index']);
+
+
+// 🔐 AUTH (LOGIN REGISTER)
 Auth::routes();
 
-// HOME
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// 🏠 HOME (SETELAH LOGIN)
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 // 👑 ADMIN AREA
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
-    // DASHBOARD ADMIN
     Route::get('/admin', function () {
         return view('admin.dashboard');
     });
@@ -32,7 +46,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // 🎟️ KASIR AREA
 Route::middleware(['auth', 'role:kasir'])->group(function () {
 
-    // ❗ FIX: jangan text lagi, pakai view
     Route::get('/kasir', function () {
         return view('kasir.dashboard');
     });
