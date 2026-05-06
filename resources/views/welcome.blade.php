@@ -5,38 +5,7 @@
 <body class="bg-[#14070d] text-white font-sans min-h-screen p-6">
 
     <div class="max-w-7xl mx-auto bg-[#1f1f1f] rounded-3xl p-6 shadow-2xl">
-<<<<<<< HEAD
-=======
-        <!-- Navbar -->
-        <nav class="flex items-center justify-between mb-8">
-            <div class="flex items-center gap-10">
-                <div class="text-2xl font-bold text-red-500">CineTix</div>
-                <div class="flex gap-8 text-gray-300">
-                    <a href="#home" class="hover:text-white transition">Home</a>
-                    <a href="#bioskop" class="hover:text-white transition">Bioskop</a>
-                    <a href="#film" class="hover:text-white transition">Film</a>
-                    <div class="relative group cursor-pointer">
-                        <span class="hover:text-white transition">Genre</span>
-                        <div class="relative group cursor-pointer">
-    
 
-    <div class="absolute hidden group-hover:block bg-[#2a2a2a] rounded-xl mt-2 py-2 w-40 shadow-lg z-50">
-        <a href="{{ url('/genre/action') }}" class="block px-4 py-2 hover:bg-[#3a3a3a]">Action</a>
-        <a href="{{ url('/genre/drama') }}" class="block px-4 py-2 hover:bg-[#3a3a3a]">Drama</a>
-        <a href="{{ url('/genre/comedy') }}" class="block px-4 py-2 hover:bg-[#3a3a3a]">Comedy</a>
-        <a href="{{ url('/genre/horror') }}" class="block px-4 py-2 hover:bg-[#3a3a3a]">Horror</a>
-        <a href="{{ url('/genre/scifi') }}" class="block px-4 py-2 hover:bg-[#3a3a3a]">Sci-Fi</a>
-    </div>
-</div>
-                </div>
-            </div>
-            <div class="flex items-center gap-4">
-                <input type="text" placeholder="Search" class="bg-[#121212] rounded-xl px-4 py-2 outline-none">
-
-                <div class="w-10 h-10 rounded-full bg-yellow-400"></div>
-            </div>
-        </nav>
->>>>>>> e1c5342 (backup sebelum pull)
 
         <div class="grid grid-cols-12 gap-6">
 

@@ -18,17 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 🔥 HALAMAN BIOSKOP (PUBLIC - TANPA LOGIN)
+// 🔥 BIOSKOP (PUBLIC)
 Route::get('/bioskop', [BioskopController::class, 'index']);
-
 
 // 🔐 AUTH (LOGIN REGISTER)
 Auth::routes();
 
-
 // 🏠 HOME (SETELAH LOGIN)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -38,27 +35,21 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('booking')->group(function () {
 
-    // daftar film
     Route::get('/', [BookingController::class, 'index'])
         ->name('booking.index');
 
-    // detail film + pilih bioskop
     Route::get('/film/{id}', [BookingController::class, 'show'])
         ->name('booking.show');
 
-    // pilih kursi
     Route::get('/kursi/{id}', [BookingController::class, 'kursi'])
         ->name('booking.kursi');
 
-    // checkout
     Route::post('/checkout', [BookingController::class, 'checkout'])
         ->name('booking.checkout');
 
-    // tiket
     Route::get('/tiket/{id}', [BookingController::class, 'tiket'])
         ->name('booking.tiket');
 });
-
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +68,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/film', [FilmController::class, 'store']);
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | 🎟️ KASIR AREA
@@ -89,3 +79,15 @@ Route::middleware(['auth', 'role:kasir'])->prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| 🎬 GENRE (PUBLIC ROUTE - FIXED)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/genre/{genre?}', function ($genre = null) {
+    return view('genre', compact('genre'));
+});
