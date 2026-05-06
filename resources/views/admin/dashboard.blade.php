@@ -45,6 +45,21 @@
             margin-top: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        .logout-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #e74c3c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
     </style>
 </head>
 
@@ -54,10 +69,17 @@
         <h2>ADMIN</h2>
 
         <div class="menu">
-            <a href="/admin">Dashboard</a>
+            <a href="/dashboard">Dashboard</a>
             <a href="/film">Data Film</a>
             <a href="/film/create">Tambah Film</a>
+            <a href="/profile">Profil Saya</a>
         </div>
+
+        <!-- Logout -->
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
     </div>
 
     <div class="content">

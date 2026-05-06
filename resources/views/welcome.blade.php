@@ -16,7 +16,7 @@
             <div class="flex items-center gap-10">
                 <div class="text-2xl font-bold text-red-500">CineTix</div>
                 <div class="flex gap-8 text-gray-300">
-                    <a href="#home" class="hover:text-white transition">Home</a>
+                    <a href="#home" class="hover:text-white transition">Dashboard</a>
                     <a href="#bioskop" class="hover:text-white transition">Bioskop</a>
                     <a href="#film" class="hover:text-white transition">Film</a>
                     <div class="relative group cursor-pointer">
@@ -32,10 +32,34 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center gap-4">
+
+            <div class="flex items-center gap-4 relative">
                 <input type="text" placeholder="Search" class="bg-[#121212] rounded-xl px-4 py-2 outline-none">
 
-                <div class="w-10 h-10 rounded-full bg-yellow-400"></div>
+                <!-- Avatar tetap sama -->
+                <div class="w-10 h-10 rounded-full bg-yellow-400 cursor-pointer"></div>
+
+                <!-- TAMBAHAN PROFILE MENU -->
+                <div id="profileMenu"
+                    class="hidden absolute right-0 top-14 bg-white text-black rounded-xl shadow-lg p-4 w-56 z-50">
+
+                    <p class="font-bold">{{ Auth::user()->name }}</p>
+                    <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
+
+                    <hr class="my-3">
+
+                    <a href="/profile" class="block py-2 hover:text-red-500">
+                        Profil Saya
+                    </a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                            class="w-full mt-2 bg-red-600 text-white py-2 rounded-lg">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
         </nav>
 
@@ -65,8 +89,8 @@
                         <button class="text-gray-400">Lihat Semua</button>
                     </div>
                     <div class="grid md:grid-cols-4 gap-4">
-                        @for ($i = 1; $i <= 4; $i++) <div
-                            class="bg-[#2a2a2a] rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+                        @for ($i = 1; $i <= 4; $i++) 
+                        <div class="bg-[#2a2a2a] rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
                             <img src="{{ asset('images/film/movie'.$i.'.jpg') }}" alt="Movie"
                                 class="w-full h-56 object-cover">
                             <div class="p-4">
@@ -74,57 +98,68 @@
                                 <p class="text-sm text-gray-400">Action, Adventure</p>
                                 <p class="text-sm text-gray-500 mt-2">120 menit</p>
                             </div>
-                    </div>
-                    @endfor
-            </div>
-            </section>
-
-            <!-- Rekomendasi -->
-            <section>
-                <div class="flex justify-between mb-4">
-                    <h2 class="text-2xl font-bold">Rekomendasi Untukmu</h2>
-                    <button class="text-gray-400">Lihat Semua</button>
-                </div>
-                <div class="grid md:grid-cols-4 gap-4">
-                    @for ($i = 5; $i <= 8; $i++) <div
-                        class="bg-[#2a2a2a] rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
-                        <img src="{{ asset('images/rekomendasi/rekomen'.$i.'.jpg') }}" alt="Movie"
-                            class="w-full h-56 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-semibold">Rekomendasi {{ $i }}</h3>
-                            <p class="text-sm text-gray-400">Drama, Sci-Fi</p>
-                            <p class="text-sm text-gray-500 mt-2">110 menit</p>
                         </div>
+                        @endfor
+                    </div>
+                </section>
+
+                <!-- Rekomendasi -->
+                <section>
+                    <div class="flex justify-between mb-4">
+                        <h2 class="text-2xl font-bold">Rekomendasi Untukmu</h2>
+                        <button class="text-gray-400">Lihat Semua</button>
+                    </div>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        @for ($i = 5; $i <= 8; $i++) 
+                        <div class="bg-[#2a2a2a] rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform">
+                            <img src="{{ asset('images/rekomendasi/rekomen'.$i.'.jpg') }}" alt="Movie"
+                                class="w-full h-56 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-semibold">Rekomendasi {{ $i }}</h3>
+                                <p class="text-sm text-gray-400">Drama, Sci-Fi</p>
+                                <p class="text-sm text-gray-500 mt-2">110 menit</p>
+                            </div>
+                        </div>
+                        @endfor
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="col-span-3 bg-[#2a2a2a] rounded-3xl p-5">
+                <h2 class="text-2xl font-bold mb-6">Coming Soon</h2>
+
+                @for ($i = 1; $i <= 3; $i++) 
+                <div class="flex gap-4 mb-6">
+                    <img src="{{ asset('images/coming/cs'.$i.'.jpg') }}" alt="Coming Soon"
+                        class="w-20 h-28 rounded-xl object-cover">
+                    <div>
+                        <h3 class="font-semibold">Film Segera Tayang {{ $i }}</h3>
+                        <p class="text-sm text-gray-400">Drama</p>
+                        <p class="text-xs text-gray-500 mt-2">
+                            Jangan lewatkan film terbaru yang segera hadir di bioskop.
+                        </p>
+                    </div>
                 </div>
                 @endfor
+
+                <button
+                    class="w-full mt-8 border border-gray-500 py-3 rounded-2xl hover:bg-white hover:text-black transition">
+                    Lihat Lebih Banyak
+                </button>
+            </aside>
         </div>
-        </section>
     </div>
 
-    <!-- Sidebar -->
-    <aside class="col-span-3 bg-[#2a2a2a] rounded-3xl p-5">
-        <h2 class="text-2xl font-bold mb-6">Coming Soon</h2>
+    <!-- TAMBAHAN SCRIPT -->
+    <script>
+        const avatar = document.querySelector('.bg-yellow-400');
+        const menu = document.getElementById('profileMenu');
 
-        @for ($i = 1; $i <= 3; $i++) <div class="flex gap-4 mb-6">
-            <img src="{{ asset('images/coming/cs'.$i.'.jpg') }}" alt="Coming Soon"
-                class="w-20 h-28 rounded-xl object-cover">
-            <div>
-                <h3 class="font-semibold">Film Segera Tayang {{ $i }}</h3>
-                <p class="text-sm text-gray-400">Drama</p>
-                <p class="text-xs text-gray-500 mt-2">
-                    Jangan lewatkan film terbaru yang segera hadir di bioskop.
-                </p>
-            </div>
-            </div>
-            @endfor
-
-            <button
-                class="w-full mt-8 border border-gray-500 py-3 rounded-2xl hover:bg-white hover:text-black transition">
-                Lihat Lebih Banyak
-            </button>
-    </aside>
-    </div>
-    </div>
+        avatar.addEventListener('click', function () {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 
 </body>
 
